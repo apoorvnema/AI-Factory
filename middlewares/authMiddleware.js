@@ -16,7 +16,7 @@ const isAuthenticated = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
-        return res.status(401).json({ error: 'Token is not valid' });
+        return res.status(401).json({ error: 'Unauthorized Access with status code 401' });
     }
 };
 

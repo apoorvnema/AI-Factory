@@ -1,7 +1,7 @@
 {
-  "name": "talkbot-server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "ai-factory-server",
+  "version": "2.0.1",
+  "description": "AI Factory: A comprehensive toolset integrating advanced AI capabilities, including chat interface with voice narration, summary and paragraph generation, text-to-JavaScript code conversion, and image generation using the powerful DALL-E-2 model.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,8 +10,8 @@
     "client": "npm start --prefix ./client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Apoorv Nema",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.6.3",
     "bcryptjs": "^2.4.3",
