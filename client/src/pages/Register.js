@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import '../App.css'
 import { inputTextStyle, inputTextColor, textFont } from '../styles'
+import API_CONFIG from '../config'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('https://ai-factory-api.apoorvnema.pro/api/v1/auth/register', { username, email, password })
+            await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/auth/register`, { username, email, password })
             toast.success('User Register Successfully')
             navigate('/login')
         } catch (err) {

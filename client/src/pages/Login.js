@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import '../App.css'
 import { inputTextStyle, inputTextColor, textFont } from '../styles'
+import API_CONFIG from '../config'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -27,10 +28,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response_login = await axios.post('https://ai-factory-api.apoorvnema.pro/api/v1/auth/login', { email, password })
+            const response_login = await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/auth/login`, { email, password })
             toast.success('Login Successfully')
             localStorage.setItem('authToken', response_login.data.token)
-            const response = await axios.get(`https://ai-factory-api.apoorvnema.pro/api/v1/auth/users/${email}`);
+            const response = await axios.get(`${API_CONFIG.API_BASE_URL}/api/v1/auth/users/${email}`);
             setUsername(response.data.username);
             setTimeout(() => {
                 navigate('/')

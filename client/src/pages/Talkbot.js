@@ -8,6 +8,7 @@ import { Button, CircularProgress, TextField } from '@mui/material';
 import { inputTextColor, inputTextStyle, textFont } from '../styles';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import API_CONFIG from '../config'
 
 const Talkbot = () => {
     const authToken = localStorage.getItem('authToken');
@@ -57,7 +58,7 @@ const Talkbot = () => {
         try {
             // Set loading to true before making the request
             setLoading(true);
-            const response = await axios.post('https://ai-factory-api.apoorvnema.pro/api/v1/openai/talkbot', { message: messages },
+            const response = await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/openai/talkbot`, { message: messages },
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -71,9 +72,9 @@ const Talkbot = () => {
             }
             if (speakVol !== false) {
                 const utterance = new SpeechSynthesisUtterance(response.data.message);
-                utterance.rate = 1.5; // Adjust the speaking rate (1 is normal speed)
+                utterance.rate = 1; // Adjust the speaking rate (1 is normal speed)
                 utterance.pitch = 1; // Adjust the pitch (1 is the default pitch)
-                utterance.volume = 0.8; // Adjust the volume (0 to 1)
+                utterance.volume = 1; // Adjust the volume (0 to 1)
                 synthesis.speak(utterance);
             }
         } catch (error) {

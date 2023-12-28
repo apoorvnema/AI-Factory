@@ -6,6 +6,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { textFont, nav } from '../styles'
 import InfoDialog from './InfoDialog';
+import API_CONFIG from '../config'
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('https://ai-factory-api.apoorvnema.pro/api/v1/auth/logout')
+            await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/auth/logout`)
             localStorage.removeItem('authToken')
             localStorage.removeItem('user')
             toast.success('Logout Successfully')

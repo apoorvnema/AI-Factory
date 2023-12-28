@@ -4,6 +4,7 @@ import { Box, Typography, useMediaQuery, TextField, Button, Alert, Collapse, Car
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { inputTextColor, inputTextStyle, textFont, codeFont } from '../styles'
+import API_CONFIG from '../config'
 
 const Feature = (props) => {
     const authToken = localStorage.getItem('authToken');
@@ -30,7 +31,7 @@ const Feature = (props) => {
         try {
             setLoading(true);
             const { data } = await axios.post(
-                'https://ai-factory-api.apoorvnema.pro/api/v1/openai/' + api,
+                `${API_CONFIG.API_BASE_URL}/api/v1/openai/` + api,
                 { text },
                 {
                     headers: {

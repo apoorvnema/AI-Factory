@@ -20,7 +20,7 @@ const Homepage = () => {
             <Typography color="white" variant="h5" mb={2} p={1} pl={6} fontWeight="bold" sx={{ bgcolor: "#282c34", borderTop: "2px #045846 solid", borderBottom: "2px #045846 solid", ...textFont }}>
                 Welcome, {user}
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'row', backgroundColor: '#40414f', flexFlow: 'wrap' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', flexDirection: 'row', backgroundColor: '#40414f', flexFlow: 'wrap' }}>
                 <BoxComp heading='Text Generation' route='summary' title='Text Summary' description='Summarize long text into short sentences' icon='1' />
                 <BoxComp heading='Paragraph Generation' route='paragraph' title='Paragraph' description='Generate Paragraph with words' icon='2' />
                 <BoxComp heading='JS Converter' route='jsCode' title='JS Converter' description='Translate English to Javascript Code' icon='3' />
