@@ -1,0 +1,320 @@
+@font-face {
+  font-family: TestSöhne-Buch;
+  src: url(./fonts/TestSöhne-Buch.otf);
+}
+
+.Talkbot {
+  text-align: center;
+  display: flex;
+  position: absolute;
+  background-color: #282c34;
+  top: 116px;
+  bottom: 0px;
+  color: white;
+  right: 0px;
+  left: 0px;
+}
+
+.sidemenu {
+  width: 240px;
+  padding: 10px;
+  background: #202123;
+  font-family: TestSöhne-Buch, sans-serif;
+}
+
+.side-menu-button {
+  padding: 12px;
+  border: 1px solid #343541;
+  border-radius: 5px;
+  text-align: left;
+  transition: ease 0.25s all;
+  cursor: pointer;
+}
+
+.side-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.side-menu-button span {
+  padding-left: 10px;
+  padding-right: 15px;
+}
+
+/* CollapsibleMenu */
+
+.sidemenu {
+  position: fixed;
+  left: -240px;
+  transition: left 0.3s ease;
+}
+
+.sidemenu.open {
+  left: 0;
+  z-index: 10;
+  height: 100%;
+}
+
+.hamburger {
+  cursor: pointer;
+  padding: 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.hamburger-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.chatbox {
+  flex: 1;
+  background: #343541;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.chat-input-holder {
+  padding: 24px;
+  background-color: #282c34;
+  overflow-y: auto;
+}
+
+.chat-input-textarea {
+  background-color: #40414f;
+  border-radius: 5px;
+  padding: 12px;
+  color: white;
+  font-size: 1.25em;
+  border: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  outline: none;
+  flex: 1;
+  width: -webkit-fill-available;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+  font-family: TestSöhne-Buch, sans-serif;
+}
+
+.groupButton {
+  display: flex;
+  align-items: center;
+}
+
+.chat-input-button {
+  background-color: #0da37f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-input-button:hover {
+  background-color: #0b8e72;
+}
+
+.chat-log {
+  text-align: left;
+  padding: 24px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.talkbot-form {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* Customize the appearance of the scrollbar */
+.chat-log::-webkit-scrollbar {
+  width: 10px;
+  /* Set the width of the scrollbar */
+}
+
+.chat-log::-webkit-scrollbar-thumb {
+  background-color: #0da37f;
+  /* Set the color of the scrollbar thumb (the draggable part) */
+  border-radius: 5px;
+  /* Set the border radius of the scrollbar thumb */
+}
+
+.chat-log::-webkit-scrollbar-track {
+  background-color: #40414f;
+  /* Set the color of the scrollbar track (the area behind the thumb) */
+}
+
+.chat-log::-webkit-scrollbar-thumb:hover {
+  background-color: #0b8e72;
+  /* Set the color of the scrollbar thumb on hover */
+}
+
+/* Customize the appearance of the scrollbar */
+.text-generation::-webkit-scrollbar {
+  width: 10px;
+  /* Set the width of the scrollbar */
+}
+
+.text-generation::-webkit-scrollbar-thumb {
+  background-color: #0da37f;
+  /* Set the color of the scrollbar thumb (the draggable part) */
+  border-radius: 5px;
+  /* Set the border radius of the scrollbar thumb */
+}
+
+.text-generation::-webkit-scrollbar-track {
+  background-color: #40414f;
+  border: #202123 solid 1px;
+  /* Set the color of the scrollbar track (the area behind the thumb) */
+}
+
+.text-generation::-webkit-scrollbar-thumb:hover {
+  background-color: #0b8e72;
+  /* Set the color of the scrollbar thumb on hover */
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  /* Set the width of the scrollbar */
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #0da37f;
+  /* Set the color of the scrollbar thumb (the draggable part) */
+  border-radius: 5px;
+  /* Set the border radius of the scrollbar thumb */
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #40414f;
+  border: #202123 solid 1px;
+  /* Set the color of the scrollbar track (the area behind the thumb) */
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #0b8e72;
+  /* Set the color of the scrollbar thumb on hover */
+}
+
+.chat-message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: justify;
+  line-height: 1.5;
+  font-family: TestSöhne-Buch, sans-serif;
+}
+
+.chat-message.chatgpt {
+  background-color: #444654;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.chat-message-center {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  background: #0da37f;
+  border-radius: 15%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.avatar.chatgpt {
+  background-color: #0da37f;
+  border-radius: 10px;
+}
+
+.message {
+  padding-left: 40px;
+  padding-right: 40px;
+  overflow: auto;
+}
+
+.link {
+  padding: 20px;
+  color: #0da37f;
+  font-family: 'TestSöhne-Buch', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #045846;
+}
+
+pre {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+}
+
+code {
+  color: #be661d;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .sidemenu {
+    position: relative;
+    left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidemenu.open {
+    width: 100%;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text-size {
+    font-size: 16px;
+  }
+
+  .user {
+    background: none;
+  }
+
+  .avatar.user {
+    width: 25px;
+    height: 25px;
+  }
+
+  .talkbot-form {
+    flex-direction: column;
+  }
+
+  .groupButton {
+    margin-top: 10px;
+  }
+}
