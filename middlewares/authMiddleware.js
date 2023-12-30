@@ -16,7 +16,7 @@ const isAuthenticated = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
-        return res.status(401).json({ error: 'Unauthorized Access with status code 401' });
+        return res.status(401).json({ error: 'Your access token is expired please login again' });
     }
 };
 

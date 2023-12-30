@@ -23,7 +23,7 @@ const Homepage = () => {
             <Box sx={{ display: 'flex', justifyContent: 'space-around', flexDirection: 'row', backgroundColor: '#40414f', flexFlow: 'wrap' }}>
                 <BoxComp heading='Text Generation' route='summary' title='Text Summary' description='Summarize long text into short sentences' icon='1' />
                 <BoxComp heading='Paragraph Generation' route='paragraph' title='Paragraph' description='Generate Paragraph with words' icon='2' />
-                <BoxComp heading='JS Converter' route='jsCode' title='JS Converter' description='Translate English to Javascript Code' icon='3' />
+                <BoxComp heading='Code Converter' route='code' title='Code Generator' description='Translate English to Programming Code' icon='3' />
                 <BoxComp heading='TalkBot' route='talkbot' title='Talkbot' description='AI Chatbot with Voice Narration' icon='4' />
                 <BoxComp heading='Image Generator' route='image' title='Image Maker' description='Generate AI images' icon='5' />
             </Box>

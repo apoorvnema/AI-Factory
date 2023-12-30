@@ -1,6 +1,5 @@
 # AI Factory Server
-
-![AI Factory Logo](/client/public/ai-factory-logo.png)
+<img src="/client/public/ai-factory-logo.png" width="200px" alt="AI Factory logo">
 
 ## Description
 

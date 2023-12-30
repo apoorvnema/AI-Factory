@@ -43,11 +43,12 @@ exports.paragraphController = async (req, res) => {
     }
 }
 
-exports.jsCodeController = async (req, res) => {
+exports.codeController = async (req, res) => {
     try {
         const { text } = req.body;
+        const { selectedLanguage } = req.body;
         const data = await openai.chat.completions.create({
-            messages: [{ role: 'user', content: `/* convert these instructions to javascript code \n ${text}` }],
+            messages: [{ role: 'user', content: `/* convert these instructions to ${selectedLanguage} code \n ${text}` }],
             model: 'gpt-3.5-turbo',
 
         });

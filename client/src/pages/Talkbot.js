@@ -45,6 +45,15 @@ const Talkbot = () => {
         setOpen(!open);
     };
 
+    async function handleKeyPress(e) {
+        if (e.key === "Enter") {
+            if (e.shiftKey) {
+                return;
+            }
+            handleSubmit(e);
+        }
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         let chatLogNew = [...chatLog, {
@@ -122,7 +131,7 @@ const Talkbot = () => {
                 <div className="chat-input-holder">
                     <form className="talkbot-form" onSubmit={handleSubmit}>
                         <TextField className="chat-input-textarea" inputProps={inputTextColor} sx={{ m: 0, ...inputTextStyle }} placeholder='Enter text here' multiline={true} type='text' required margin='normal'
-                            value={input} onChange={(e) => setInput(e.target.value)} />
+                            value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyPress} />
                         <div className='groupButton'><Button disabled={loading} type='submit' className="chat-input-button" variant='contained' size='large' sx={{ color: "white", ml: "20px", backgroundColor: '#0da37f', ...textFont, '&:hover': { backgroundColor: '#0b8e72' } }}>Send</Button>
                             {speakVol ? <VolumeUpIcon onClick={speakButton} sx={{ color: "#0da37f", ml: "20px", '&:hover': { color: '#0b8e72' } }} /> : <VolumeOffIcon onClick={speakButton} sx={{ color: "#0da37f", ml: "20px", '&:hover': { color: '#0b8e72' } }} />}</div>
                     </form>

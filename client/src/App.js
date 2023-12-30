@@ -28,8 +28,8 @@ function App() {
         <Route path="/talkbot" element={<Talkbot />} />
         <Route path="/paragraph" element={<Feature headline="Generate Paragraph" api="paragraph" noCode={true} featureName="Paragraph" />} />
         <Route path="/summary" element={<Feature headline="Summarize Text" api="summary" noCode={true} featureName="Summary" />} />
-        <Route path="/jsCode" element={<Feature headline="Javascript Converter" api="jsCode" noCode={false} featureName="Code" />} />
-        <Route path="/image" element={<Feature headline="Image Generator" api="image" noCode={false} featureName="Image" imageGen={true} />} />
+        <Route path="/code" element={<Feature headline="Code Generator" api="code" noCode={false} featureName="Code" />} />
+        <Route path="/image" element={<Feature headline="Image Generator" api="image" noCode={true} featureName="Image" imageGen={true} />} />
         <Route path="/info" element={<InfoDialog />} />
       </Routes>
       <Toaster />

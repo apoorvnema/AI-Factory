@@ -42,17 +42,19 @@ npm start
 - Allow users to create paragraphs of text, potentially assisted by the system's natural language processing capabilities.
 
 ##### 4. Text to JavaScript Code Conversion:
-- Implement a feature that converts natural language text into executable JavaScript code.
+- Implement a feature that converts natural language text into multiple programming language code.
 
 ##### 5. Image Generation with DALL-E-2 Model:
 - Utilize the DALL-E-2 model to generate images based on user input or requests.
 
 ##### 6. Login and Logout with Username Display:
 - Implement user authentication with login and logout functionality.
-- Display the username in the UI for a personalized experience.
 
 ##### 7. UI and UX Changes:
 - Continuously improve the user interface (UI) and user experience (UX) based on feedback and evolving design principles.
+
+##### 8. Security Enhancements:
+- Implement auto-logout functionality after a certain interval, expiring the access token for enhanced security measures.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.

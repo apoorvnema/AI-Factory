@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import '../App.css'
 import { Box, Typography } from '@mui/material'
 import { NavLink as Link, useNavigate } from 'react-router-dom'
@@ -11,22 +12,55 @@ import API_CONFIG from '../config'
 const Navbar = () => {
     const navigate = useNavigate();
     const synthesis = window.speechSynthesis;
+    const [expirationTime, setExpirationTime] = useState(0);
 
-    const handleLogout = async () => {
+    const handleLogout = useCallback(async () => {
         try {
-            await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/auth/logout`)
-            localStorage.removeItem('authToken')
-            localStorage.removeItem('user')
-            toast.success('Logout Successfully')
-            navigate('/login')
-        }
-        catch (err) {
-            toast.error('Logout Failed')
-        }
-        finally {
+            await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/auth/logout`);
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            setExpirationTime(0);
+            localStorage.removeItem('expirationTime');
+            toast.success('Logout Successfully');
+            navigate('/login');
+        } catch (err) {
+            toast.error('Logout Failed');
+        } finally {
             synthesis.cancel();
         }
-    }
+    }, [navigate, synthesis]);
+
+    // Use useEffect to fetch the token and expiration time from the server
+    useEffect(() => {
+        const checkTokenExpiration = () => {
+            const currentTime = Date.now();
+
+            if (localStorage.getItem('expirationTime') && expirationTime < currentTime) {
+                // Token expired, perform logout
+                handleLogout();
+            }
+        };
+
+        const fetchToken = async () => {
+            try {
+                const expiration = localStorage.getItem('expirationTime');
+                setExpirationTime(expiration);
+            } catch (error) {
+                console.error('Error fetching token:', error);
+            }
+        };
+
+        fetchToken();
+
+        // Schedule the next check after a certain interval (e.g., every 30 seconds)
+        const intervalId = setInterval(checkTokenExpiration, 30 * 1000); // 30 seconds
+
+        // Cleanup the interval when the component unmounts
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, [expirationTime, handleLogout]);
+
     const home = () => {
         synthesis.cancel();
     }

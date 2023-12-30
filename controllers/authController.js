@@ -4,9 +4,14 @@ const errorResponse = require('../utils/errorResponse');
 // JWT TOKEN
 exports.sendToken = (user, statusCode, res) => {
     const tokens = user.getSignedToken(res);
+    const expirationTimeInMinutes = parseInt(process.env.JWT_ACCESS_EXPIREIN, 10) || 15; // Default: 15 minutes
+    const expirationTimeInSeconds = expirationTimeInMinutes * 60;
+    const expirationTimeInMilliseconds = expirationTimeInSeconds * 1000;
+    const expirationTime = Date.now() + expirationTimeInMilliseconds;
     res.status(statusCode).json({
         success: true,
         token: tokens.accessToken,
+        expirationTime: expirationTime,
     });
 };
 
