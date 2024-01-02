@@ -28,7 +28,10 @@ const Register = () => {
             toast.success('User Register Successfully')
             navigate('/login')
         } catch (err) {
-            if (err.response.data.error) {
+            if (err.code === "ERR_NETWORK") {
+                setError('Couldn\'t Connect with the Server')
+            }
+            else if (err.response.data.error) {
                 setError(err.response.data.error)
             }
             else if (err.message) {

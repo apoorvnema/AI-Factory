@@ -1,0 +1,7 @@
+{
+  "name": "AI Factory",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

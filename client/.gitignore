@@ -11,6 +11,7 @@ client/node_modules
 
 # production
 /build
+/android
 
 # misc
 .DS_Store

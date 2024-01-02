@@ -24,7 +24,12 @@ const Navbar = () => {
             toast.success('Logout Successfully');
             navigate('/login');
         } catch (err) {
-            toast.error('Logout Failed');
+            if (err.code === "ERR_NETWORK") {
+                toast.error('Couldn\'t Connect with the Server')
+            }
+            else {
+                toast.error('Logout Failed');
+            }
         } finally {
             synthesis.cancel();
         }

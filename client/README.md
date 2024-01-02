@@ -1,5 +1,8 @@
 # AI Factory Client
 
+## Screenshot
+<img src="../screenshot.png" width="800px" alt="Screenshot">
+
 ## Description
 
 ###### The AI Factory Client is the front-end component of the AI Factory system responsible for providing a user-friendly interface and facilitating user interactions with the underlying machine learning capabilities. Its primary responsibilities include:
