@@ -1,6 +1,6 @@
 {
   "name": "ai-factory-server",
-  "version": "2.0.1",
+  "version": "2.2",
   "description": "AI Factory: A comprehensive toolset integrating advanced AI capabilities, including chat interface with voice narration, summary and paragraph generation, text-to-JavaScript code conversion, and image generation using the powerful DALL-E-2 model.",
   "main": "index.js",
   "scripts": {

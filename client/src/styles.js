@@ -55,3 +55,21 @@ export const nav = {
     alignItems: "center",
     justifyContent: "center"
 }
+
+export const selectTextStyle = {
+    backgroundColor: '#40414f', borderRadius: 2,
+    '& .MuiSelect-select': {
+        fontFamily: 'TestSöhne-Buch, sans-serif !important',
+
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#0da37f'
+    }
+    ,
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#0da37f'
+    },
+    '& .MuiSelect-icon': {
+        fill: '#0da37f'
+    }
+}

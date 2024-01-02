@@ -1,5 +1,8 @@
 # AI Factory Server
-<img src="/client/public/ai-factory-logo.png" width="200px" alt="AI Factory logo">
+<img src="./client/public/ai-factory-logo.png" width="200px" alt="AI Factory logo">
+
+## Screenshot
+<img src="screenshot.png" width="800px" alt="Screenshot">
 
 ## Description
 

@@ -16,7 +16,7 @@ const openaiRoutes = require('./routes/openaiRoutes');
 connectDB();
 
 const corsOptions = {
-  origin: ['https://ai-factory.apoorvnema.pro', 'http://localhost:3000'], // Specify the allowed origin(s)
+  origin: ['https://ai-factory.apoorvnema.pro', 'http://localhost:3000', 'http://localhost',], // Specify the allowed origin(s)
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify the allowed HTTP methods
   credentials: true, // Allow cookies and credentials to be sent
   optionsSuccessStatus: 204, // Set the HTTP status code for preflight OPTIONS requests
@@ -44,9 +44,11 @@ app.post('/api/v1/openai/talkbot', async (req, res) => {
       messages: [{ role: 'user', content: `${message}` }],
       model: 'gpt-3.5-turbo',
     });
-    res.json({
-      message: response.choices[0].message.content
-    })
+    if (response) {
+      if (response.choices[0].message.content) {
+        return res.status(200).json({ message: response.choices[0].message.content });
+      }
+    }
   } catch (err) {
     return res.status(404).json({ message: 'Request failed with status code 404' });
   }

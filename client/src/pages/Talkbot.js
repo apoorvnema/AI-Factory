@@ -88,7 +88,12 @@ const Talkbot = () => {
             }
         } catch (error) {
             // Handle errors
-            setChatLog([...chatLogNew, { user: "gpt", message: `Sorry, something went wrong. Please try again later.` }]);
+            if (error.code === "ERR_NETWORK") {
+                setChatLog([...chatLogNew, { user: "gpt", message: 'Couldn\'t Connect with the Server' }])
+            }
+            else {
+                setChatLog([...chatLogNew, { user: "gpt", message: `Sorry, something went wrong. Please try again later.` }]);
+            }
         } finally {
             // Set loading back to false regardless of success or failure
             setLoading(false);

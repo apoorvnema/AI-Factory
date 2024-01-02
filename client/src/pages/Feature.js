@@ -3,7 +3,7 @@ import '../App.css'
 import { Box, Typography, useMediaQuery, TextField, Button, Alert, Collapse, Card, CircularProgress, Select, MenuItem, InputLabel, } from '@mui/material'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { inputTextColor, inputTextStyle, textFont, codeFont } from '../styles'
+import { inputTextColor, inputTextStyle, textFont, codeFont, selectTextStyle } from '../styles'
 import API_CONFIG from '../config'
 
 const Feature = (props) => {
@@ -55,7 +55,10 @@ const Feature = (props) => {
             );
             setVariable(data.message);
         } catch (err) {
-            if (err.response.data.error) {
+            if (err.code === "ERR_NETWORK") {
+                setError('Couldn\'t Connect with the Server')
+            }
+            else if (err.response.data.error) {
                 setError(err.response.data.error)
             }
             else if (err.message) {
@@ -91,7 +94,7 @@ const Feature = (props) => {
                         value={selectedLanguage}
                         onChange={handleLanguageChange}
                         fullWidth={true}
-                        inputProps={{ ...inputTextColor }} sx={{ color: 'white', ...inputTextStyle }}
+                        inputProps={{ ...inputTextColor }} sx={{ color: 'white', ...selectTextStyle }}
                     >
                         <MenuItem value="javascript">JavaScript</MenuItem>
                         <MenuItem value="python">Python</MenuItem>
@@ -131,7 +134,7 @@ const Feature = (props) => {
                     </Card>
                 )
             }
-        </Box >
+        </Box>
     )
 }
 

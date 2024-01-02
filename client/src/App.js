@@ -11,6 +11,8 @@ import { createTheme } from '@mui/material/styles/';
 import { Toaster } from 'react-hot-toast';
 import Feature from './pages/Feature';
 import InfoDialog from './components/InfoDialog';
+import './App.css';
+import withSplashScreen from './components/withSplashScreen';
 
 function App() {
   const theme = useMemo(() => createTheme(themeSettings), []);
@@ -37,4 +39,4 @@ function App() {
   );
 }
 
-export default App;
+export default withSplashScreen(App);  
