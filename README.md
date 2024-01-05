@@ -24,15 +24,24 @@
 git clone https://github.com/apoorvnema/AI-Factory.git
 
 #### 2. Navigate to the project directory:
-cd ai-factory-server
+cd AI-Factory
 
 #### 3. Install dependencies:
 npm install
 
 ## Configuration
 1) Create a .env file:
-2) touch .env
-3) Add the necessary environment variables to the .env file.
+2) Add the necessary environment variables to the .env file.
+3) .env example variables: (write without double quotes)
+    - OPENAI_API_KEY="Your OpenAI API Key"
+    - PORT="Whichever port you want to use"
+    - DEV_MODE="development or production"
+    - MONGO_URI="mongodb+srv://<YOUR_USER>:<YOUR_PASS>@<Cluster_name>/<Collection_name>"
+    - JWT_ACCESS_SECRET = "Any Random String"
+    - JWT_ACCESS_EXPIREIN = 15min
+    - JWT_REFRESH_TOKEN = "Any Random String"
+    - JWT_REFRESH_EXPIREIN = 15day
+4) Make changes accordingly in .env file
 
 ## Usage
 #### 1. Start the server:

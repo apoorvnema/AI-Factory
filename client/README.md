@@ -33,6 +33,49 @@ npm install
 #### 1. Start the client:
 npm start
 
+#### 2. Chrome Extension Setup: (steps to be done in the React build folder)
+1. Download and extract the contents of the additional_files.zip from the release.
+2. Replace the existing manifest.json file in the React build directory with the one you extracted from additional_files.zip.
+3. Add the following line inside the <head> section of index.html to set the body width to 600px:
+    - <style>body{width:600px}</style>
+4. Remove the line position: absolute; from the .Talkbot class in main.*.css in the build/static/css
+5. Go to Google Chrome -> Extensions -> Manage Extensions
+6. Enable Developer Mode
+7. Click on Load Unpacked and give path to the build directory then note the extension id
+8. In the Server part of index.js, add the Chrome extension path in the origin inside corsOptions:
+    - 'chrome-extension://your_extension_id_here'
+9. Check the API_BASE_URL in config.js and ensure it points to the correct server endpoint for API requests.
+
+#### 3. Android App Setup: (steps to be done in client folder)
+1. npm run build
+2. Install Ionic CLI:
+    - npm install -g @ionic/cli
+3. Install Capacitor Core and CLI:
+    - npm install @capacitor/core --save
+    - npm install @capacitor/cli
+4. Initialize Ionic and Capacitor
+    - ionic init
+    - npx cap init
+5. Add Android Platform:
+    - ionic capacitor add android
+6. Sync Capacitor Project: (whenever there is a change in build)
+    - npx cap sync
+7. Open Android Studio:
+    - npx cap open android
+
+#### 4. Customizations for Android App:
+1. Create New Splash Screen:
+    - Navigate to \android\app\src\main\res\drawables\ and create a new splash screen.
+2. Change Splash Screen Name:
+    - Navigate to \android\app\src\main\res\values\styles.xml and modify the splash screen name with the new one.
+3. Change App Icon:
+    - Modify the app icon using the AndroidManifest.xml file. Replace the existing icon with your custom icon.
+4. Configure React Client for Localhost:
+    - Update config.js in client/src to use the localhost URL for the React client.
+5. After Changes:
+    - npm run build
+    - npx cap sync
+
 ## Features
 ##### 1. Chat Interface with Voice Narration:
 - Enable users to interact with the system using a chat interface. 
