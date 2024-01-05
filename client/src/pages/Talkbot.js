@@ -9,6 +9,8 @@ import { inputTextColor, inputTextStyle, textFont } from '../styles';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import API_CONFIG from '../config'
+import { TextToSpeech } from '@capacitor-community/text-to-speech';
+import toast from 'react-hot-toast'
 
 const Talkbot = () => {
     const authToken = localStorage.getItem('authToken');
@@ -75,16 +77,26 @@ const Talkbot = () => {
                 }
             )
             setChatLog([...chatLogNew, { user: "gpt", message: `${response.data.message}` }]);
-
-            if (synthesis.speaking) {
-                synthesis.cancel();
-            }
-            if (speakVol !== false) {
-                const utterance = new SpeechSynthesisUtterance(response.data.message);
-                utterance.rate = 1; // Adjust the speaking rate (1 is normal speed)
-                utterance.pitch = 1; // Adjust the pitch (1 is the default pitch)
-                utterance.volume = 1; // Adjust the volume (0 to 1)
-                synthesis.speak(utterance);
+            if ('speechSynthesis' in window) {
+                // Use the Web Speech API
+                if (synthesis.speaking) {
+                    synthesis.cancel();
+                }
+                if (speakVol !== false) {
+                    const utterance = new SpeechSynthesisUtterance(response.data.message);
+                    utterance.rate = 1; // Adjust the speaking rate (1 is normal speed)
+                    utterance.pitch = 1; // Adjust the pitch (1 is the default pitch)
+                    utterance.volume = 1; // Adjust the volume (0 to 1)
+                    synthesis.speak(utterance);
+                }
+            } else if (TextToSpeech) {
+                TextToSpeech.speak({
+                    text: response.data.message,
+                    locale: 'en-US',
+                    rate: 1,
+                });
+            } else {
+                toast.error('Speech Synthesis is not supported in this browser, and the TextToSpeech plugin is not available.');
             }
         } catch (error) {
             // Handle errors
@@ -102,7 +114,12 @@ const Talkbot = () => {
 
     const speakButton = () => {
         if (speakVol !== false) {
-            synthesis.cancel();
+            if (TextToSpeech) {
+                TextToSpeech.stop();
+            }
+            else {
+                synthesis.cancel();
+            }
         }
         setSpeakVol(!speakVol);
     }

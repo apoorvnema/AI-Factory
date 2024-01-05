@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import { textFont, nav } from '../styles'
 import InfoDialog from './InfoDialog';
 import API_CONFIG from '../config'
+import { TextToSpeech } from '@capacitor-community/text-to-speech';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -31,7 +32,12 @@ const Navbar = () => {
                 toast.error('Logout Failed');
             }
         } finally {
-            synthesis.cancel();
+            if (TextToSpeech) {
+                TextToSpeech.stop();
+            }
+            else {
+                synthesis.cancel();
+            }
         }
     }, [navigate, synthesis]);
 
@@ -67,7 +73,12 @@ const Navbar = () => {
     }, [expirationTime, handleLogout]);
 
     const home = () => {
-        synthesis.cancel();
+        if (TextToSpeech) {
+            TextToSpeech.stop();
+        }
+        else {
+            synthesis.cancel();
+        }
     }
 
     const loggedin = localStorage.getItem('authToken')
