@@ -1,6 +1,6 @@
 {
   "name": "ai-factory-client",
-  "version": "2.2",
+  "version": "3.0",
   "private": true,
   "dependencies": {
     "@capacitor-community/text-to-speech": "^3.0.1",

@@ -1,7 +1,8 @@
 // importing necessary libraries
-require('dotenv').config();
+const dotenv = require('dotenv');
 const OpenAI = require("openai");
 const express = require('express');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -9,14 +10,16 @@ const connectDB = require('./config/db');
 const errorHandler = require('./middlewares/errorMiddleware');
 const isAuthenticated = require('./middlewares/authMiddleware');
 
+dotenv.config();
+
 //routes path
 const authRoutes = require('./routes/authRoutes');
-const openaiRoutes = require('./routes/openaiRoutes');
+const aiRoutes = require('./routes/aiRoutes');
 
 connectDB();
 
 const corsOptions = {
-  origin: ['https://ai-factory.apoorvnema.pro', 'http://localhost:3000', 'https://localhost', 'chrome-extension://pmloiaangebidmdofglcfolcagjhaaob'], // Specify the allowed origin(s)
+  origin: ['https://ai-factory.apoorvnema.pro', 'http://localhost:3000', 'https://localhost', 'chrome-extension://hgdoaflfbljcailfcgfmgoeoomeodhbl'], // Specify the allowed origin(s)
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify the allowed HTTP methods
   credentials: true, // Allow cookies and credentials to be sent
   optionsSuccessStatus: 204, // Set the HTTP status code for preflight OPTIONS requests
@@ -35,18 +38,35 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_PRO_API);
+
 // create a openai api that calls the function
-app.use('/api/v1/openai/talkbot', isAuthenticated);
-app.post('/api/v1/openai/talkbot', async (req, res) => {
+app.use('/api/v1/ai/talkbot', isAuthenticated);
+app.post('/api/v1/ai/talkbot', async (req, res) => {
   try {
     const { message } = req.body;
-    const response = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: `${message}` }],
-      model: 'gpt-3.5-turbo',
-    });
-    if (response) {
-      if (response.choices[0].message.content) {
-        return res.status(200).json({ message: response.choices[0].message.content });
+    const { selectModel } = req.body;
+    if (selectModel === "Gemini Pro") {
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const prompt = `${message}`
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const data = response.text();
+      if (data) {
+        if (data) {
+          return res.status(200).json({ message: data });
+        }
+      }
+    }
+    else {
+      const data = await openai.chat.completions.create({
+        messages: [{ role: 'user', content: `${message}` }],
+        model: 'gpt-3.5-turbo',
+      });
+      if (data) {
+        if (data.choices[0].message.content) {
+          return res.status(200).json({ message: data.choices[0].message.content });
+        }
       }
     }
   } catch (err) {
@@ -59,7 +79,7 @@ const PORT = process.env.PORT || 3080;
 
 //API routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/openai', openaiRoutes);
+app.use('/api/v1/ai', aiRoutes);
 
 app.get('/', (req, res) => {
   res.send("Hello");

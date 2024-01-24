@@ -1,6 +1,6 @@
 {
   "name": "ai-factory-server",
-  "version": "2.2",
+  "version": "3.0",
   "description": "AI Factory: A comprehensive toolset integrating advanced AI capabilities, including chat interface with voice narration, summary and paragraph generation, text-to-JavaScript code conversion, and image generation using the powerful DALL-E-2 model.",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "Apoorv Nema",
   "license": "MIT",
   "dependencies": {
+    "@google/generative-ai": "^0.1.3",
     "axios": "^1.6.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",

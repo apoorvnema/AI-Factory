@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import ChatMessage from '../components/ChatMessage';
 import axios from 'axios'
-import { Button, CircularProgress, TextField } from '@mui/material';
-import { inputTextColor, inputTextStyle, textFont } from '../styles';
+import { Button, CircularProgress, MenuItem, Select, TextField } from '@mui/material';
+import { inputTextColor, inputTextStyle, textFont, selectTextStyle } from '../styles';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import API_CONFIG from '../config'
@@ -29,6 +29,7 @@ const Talkbot = () => {
     ]);
     const [speakVol, setSpeakVol] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [selectModel, setSelectedModel] = useState('Gemini Pro');
     const synthesis = window.speechSynthesis;
 
     const chatLogRef = useRef();
@@ -46,6 +47,10 @@ const Talkbot = () => {
     const handleToggle = () => {
         setOpen(!open);
     };
+
+    const handleModelChange = (event) => {
+        setSelectedModel(event.target.value);
+    }
 
     async function handleKeyPress(e) {
         if (e.key === "Enter") {
@@ -69,7 +74,7 @@ const Talkbot = () => {
         try {
             // Set loading to true before making the request
             setLoading(true);
-            const response = await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/openai/talkbot`, { message: messages },
+            const response = await axios.post(`${API_CONFIG.API_BASE_URL}/api/v1/ai/talkbot`, { message: messages, selectModel },
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -138,6 +143,15 @@ const Talkbot = () => {
                     <span>+</span>
                     New Chat
                 </div>
+                <Select
+                    value={selectModel}
+                    onChange={handleModelChange}
+                    fullWidth={true}
+                    inputProps={{ ...inputTextColor }} sx={{ color: 'white', ...selectTextStyle, mt: '10px', bgcolor: '#202123', border: '1px solid #343541', borderRadius: '5px', height: 'fit-content', p: '0px' }}
+                >
+                    <MenuItem value="Gemini Pro">Gemini Pro</MenuItem>
+                    <MenuItem value="GPT 3.5 Turbo">GPT 3.5 Turbo</MenuItem>
+                </Select>
             </aside>
             <section className="chatbox">
                 <div className="chat-log" ref={chatLogRef}>

@@ -41,6 +41,7 @@ npm install
     - JWT_ACCESS_EXPIREIN = 15min
     - JWT_REFRESH_TOKEN = "Any Random String"
     - JWT_REFRESH_EXPIREIN = 15day
+    - GEMINI_PRO_API="Your Gemini API Key"
 4) Make changes accordingly in .env file
 
 ## Usage

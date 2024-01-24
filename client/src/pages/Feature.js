@@ -25,10 +25,15 @@ const Feature = (props) => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState('javascript');
+    const [selectModel, setSelectedModel] = useState('Gemini Pro');
 
     const handleLanguageChange = (event) => {
         setSelectedLanguage(event.target.value);
     };
+
+    const handleModelChange = (event) => {
+        setSelectedModel(event.target.value);
+    }
 
     async function handleKeyPress(e) {
         if (e.key === "Enter") {
@@ -45,8 +50,8 @@ const Feature = (props) => {
         try {
             setLoading(true);
             const { data } = await axios.post(
-                `${API_CONFIG.API_BASE_URL}/api/v1/openai/` + api,
-                { text, selectedLanguage },
+                `${API_CONFIG.API_BASE_URL}/api/v1/ai/` + api,
+                { text, selectedLanguage, selectModel },
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -89,6 +94,16 @@ const Feature = (props) => {
                 <Typography sx={textFont} color={'#ffffff'} variant='h3'>{headline}</Typography>
                 <TextField inputProps={inputTextColor} sx={inputTextStyle} placeholder='Enter text here' multiline={true} type='text' required fullWidth={true} margin='normal'
                     value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyPress} />
+                {imageGen ? '' : <><InputLabel sx={{ color: "white", ...textFont, }} mt={2}> Select AI Model:</InputLabel>
+                    <Select
+                        value={selectModel}
+                        onChange={handleModelChange}
+                        fullWidth={true}
+                        inputProps={{ ...inputTextColor }} sx={{ color: 'white', ...selectTextStyle }}
+                    >
+                        <MenuItem value="Gemini Pro">Gemini Pro</MenuItem>
+                        <MenuItem value="GPT 3.5 Turbo">GPT 3.5 Turbo</MenuItem>
+                    </Select></>}
                 {noCode ? '' : <><InputLabel sx={{ color: "white", ...textFont, }} mt={2}> Select Source Language:</InputLabel>
                     <Select
                         value={selectedLanguage}

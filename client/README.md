@@ -75,6 +75,9 @@ npm start
 5. After Changes:
     - npm run build
     - npx cap sync
+6. To change App version:
+    - go to build.gradle file in Gradle Scripts in Android Studio
+    - then, change version code and version name
 
 ## Features
 ##### 1. Chat Interface with Voice Narration:

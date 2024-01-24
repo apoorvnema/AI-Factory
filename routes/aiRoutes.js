@@ -1,5 +1,5 @@
 const express = require('express');
-const { summaryController, paragraphController, codeController, imageController } = require('../controllers/openaiController');
+const { summaryController, paragraphController, codeController, imageController } = require('../controllers/aiController');
 const isAuthenticated = require('../middlewares/authMiddleware');
 
 const router = express.Router();
