@@ -33,7 +33,7 @@ const InfoDialog = () => {
                     </IconButton>
                 </DialogActions>
                 <DialogContent className='text-generation' sx={{ bgcolor: "#202123", color: "white", borderTop: "2px #0da37f solid", borderBottom: "2px #0da37f solid" }}>
-                    <p>Made By <a className="link" style={{ padding: 0 }} href="https://apoorvnema.pro">Apoorv Nema &#8599;</a></p>
+                    <p>Made By <a className="link" style={{ padding: 0 }} href="https://apoorvnema.com">Apoorv Nema &#8599;</a></p>
                     <p>Version : 3.0</p>
                     <p style={{ display: "flex" }}><LinkedInIcon sx={{ fill: "white" }} /><a className="link" style={{ padding: "1px", paddingTop: "2px" }} href="https://linkedin.com/in/apoorvnema">LinkedIn Profile &#8599;</a></p>
                     <p style={{ display: "flex" }}><GitHubIcon sx={{ fill: "white" }} /><a className="link" style={{ padding: "1px", paddingTop: "2px" }} href="https://github.com/apoorvnema/AI-Factory">GitHub Repository &#8599;</a></p>

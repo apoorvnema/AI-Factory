@@ -2,7 +2,7 @@ let API_BASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
     // Use production API domain
-    API_BASE_URL = 'https://ai-factory-api.apoorvnema.pro';
+    API_BASE_URL = 'https://ai-factory-api.apoorvnema.com';
 } else {
     // Use localhost API domain
     API_BASE_URL = 'http://localhost:3080'; // Adjust the port as needed

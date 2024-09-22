@@ -19,7 +19,7 @@ const aiRoutes = require('./routes/aiRoutes');
 connectDB();
 
 const corsOptions = {
-  origin: ['https://ai-factory.apoorvnema.pro', 'http://localhost:3000', 'https://localhost', 'chrome-extension://hgdoaflfbljcailfcgfmgoeoomeodhbl'], // Specify the allowed origin(s)
+  origin: ['https://ai-factory.apoorvnema.com', 'http://localhost:3000', 'https://localhost', 'chrome-extension://hgdoaflfbljcailfcgfmgoeoomeodhbl'], // Specify the allowed origin(s)
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify the allowed HTTP methods
   credentials: true, // Allow cookies and credentials to be sent
   optionsSuccessStatus: 204, // Set the HTTP status code for preflight OPTIONS requests
