@@ -120,7 +120,8 @@ exports.imageController = async (req, res) => {
         */
 
         // Correct Gemini Method
-        const response = await models.generateImages({
+        const ai = new GoogleGenerativeAI({vertexai: false, apiKey: GEMINI_PRO_API});
+        const response = await ai.models.generateImages({
             model: "imagen-4.0-fast-generate", // Cheapest/Standard model
             prompt: text,
             config: {
