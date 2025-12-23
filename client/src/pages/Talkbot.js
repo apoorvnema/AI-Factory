@@ -29,7 +29,7 @@ const Talkbot = () => {
     ]);
     const [speakVol, setSpeakVol] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [selectModel, setSelectedModel] = useState('Gemini Pro');
+    const [selectModel, setSelectedModel] = useState('gemini-2.5-flash-lite');
     const synthesis = window.speechSynthesis;
 
     const chatLogRef = useRef();
@@ -149,7 +149,7 @@ const Talkbot = () => {
                     fullWidth={true}
                     inputProps={{ ...inputTextColor }} sx={{ color: 'white', ...selectTextStyle, mt: '10px', bgcolor: '#202123', border: '1px solid #343541', borderRadius: '5px', height: 'fit-content', p: '0px' }}
                 >
-                    <MenuItem value="Gemini Pro">Gemini Pro</MenuItem>
+                    <MenuItem value="gemini-2.5-flash-lite">Gemini Pro</MenuItem>
                     <MenuItem value="GPT 3.5 Turbo">GPT 3.5 Turbo</MenuItem>
                 </Select>
             </aside>
