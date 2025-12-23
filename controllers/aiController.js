@@ -120,7 +120,7 @@ exports.imageController = async (req, res) => {
         */
 
         // Correct Gemini Method
-        const response = await client.models.generateImages({
+        const response = await models.generateImages({
             model: "imagen-4.0-fast-generate", // Cheapest/Standard model
             prompt: text,
             config: {
