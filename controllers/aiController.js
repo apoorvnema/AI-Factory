@@ -119,29 +119,28 @@ exports.imageController = async (req, res) => {
         }); 
         */
 
-        const model = genAI.getGenerativeModel({ model: "imagen-4.0-fast-generate" });
-
-        // Gemini / Imagen Implementation
-        const result = await model.generateImages({
+        // Correct Gemini Method
+        const response = await client.models.generateImages({
+            model: "imagen-4.0-fast-generate", // Cheapest/Standard model
             prompt: text,
-            numberOfImages: 1,
-            aspectRatio: "1:1",
+            config: {
+                numberOfImages: 1,
+                aspectRatio: "1:1"
+            }
         });
 
-        const image = result.generatedImages[0];
+        const generatedImage = response.generatedImages?.[0];
 
-        if (image) {
-            // We convert the binary imageBytes to a Data URL to match your expected 'url' response
-            const base64Image = image.image.imageBytes; 
-            const imageUrl = `data:image/png;base64,${base64Image}`;
+        if (generatedImage) {
+            // Convert the binary image bytes to a Data URL
+            const base64Data = generatedImage.image.imageBytes;
+            const imageUrl = `data:image/png;base64,${base64Data}`;
 
-            return res.status(200).json({ 
-                message: imageUrl 
-            });
+            return res.status(200).json({ message: imageUrl });
         }
 
     } catch (err) {
-        console.error(err);
+        console.error("Gemini Error:", err);
         return res.status(404).json({ message: err.message });
     }
 }
