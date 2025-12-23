@@ -46,7 +46,7 @@ exports.paragraphController = async (req, res) => {
         const { text } = req.body;
         const { selectModel } = req.body;
         if (selectModel === "Gemini Pro") {
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
             const prompt = `Write a detailed paragraph about \n ${text}`
             const result = await model.generateContent(prompt);
             const response = await result.response;
@@ -79,7 +79,7 @@ exports.codeController = async (req, res) => {
         const { selectModel } = req.body;
         const { selectedLanguage } = req.body;
         if (selectModel === "Gemini Pro") {
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
             const prompt = `/* convert these instructions to ${selectedLanguage} code \n ${text}`
             const result = await model.generateContent(prompt);
             const response = await result.response;
@@ -109,18 +109,39 @@ exports.codeController = async (req, res) => {
 exports.imageController = async (req, res) => {
     try {
         const { text } = req.body;
+
+        /* OpenAI Implementation (Commented Out)
         const image = await openai.images.generate({
             model: "dall-e-2",
             prompt: `generate a image of ${text}`,
             n: 1,
             size: "1024x1024",
+        }); 
+        */
+
+        const model = genAI.getGenerativeModel({ model: "imagen-4.0-fast-generate" });
+
+        // Gemini / Imagen Implementation
+        const result = await model.generateImages({
+            prompt: text,
+            numberOfImages: 1,
+            aspectRatio: "1:1",
         });
+
+        const image = result.generatedImages[0];
+
         if (image) {
-            if (image.data[0]) {
-                return res.status(200).json({ message: image.data[0].url });
-            }
+            // We convert the binary imageBytes to a Data URL to match your expected 'url' response
+            const base64Image = image.image.imageBytes; 
+            const imageUrl = `data:image/png;base64,${base64Image}`;
+
+            return res.status(200).json({ 
+                message: imageUrl 
+            });
         }
+
     } catch (err) {
+        console.error(err);
         return res.status(404).json({ message: err.message });
     }
 }
