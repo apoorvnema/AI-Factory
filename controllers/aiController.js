@@ -14,7 +14,7 @@ exports.summaryController = async (req, res) => {
         const { text } = req.body;
         const { selectModel } = req.body;
         if (selectModel === "Gemini Pro") {
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
             const prompt = `Summarize this \n ${text}`
             const result = await model.generateContent(prompt);
             const response = await result.response;
